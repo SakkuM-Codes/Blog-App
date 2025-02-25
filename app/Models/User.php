@@ -24,6 +24,11 @@ class User extends Authenticatable
         'password',
     ];
 
+        public function Blog() : belongsTo
+        {
+            return $this->belongsTo(Blog::class, 'user_id');
+        }
+
     /**
      * The attributes that should be hidden for serialization.
      *

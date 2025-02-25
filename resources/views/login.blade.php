@@ -1,8 +1,9 @@
 <!DOCTYPE HTMl>
 <html>
 <head>
-
-
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
 </head>
 <body>
 
@@ -10,7 +11,8 @@
 		<div>
 			<h2>LogIn</h2>
 		</div>
-		<form action="login" method="get">
+		<form action="login" method="Post">
+		  @csrf
 		<div>
 			<input type="text" name="email" placeholder="Email">
 		</div>
@@ -20,8 +22,5 @@
 		<button class="">Submit</button>
 		</form>
 	</div>
-
-
-
 </body>
 </html>

@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     //
+
+     public function create()
+    {
+        return view('register');
+    }
+
     public function store(Request $request)
     {       
 
@@ -20,12 +26,8 @@ class RegisterController extends Controller
         $user->password=Hash::make($request->password);
         $user->save();
 
-         return redirect ('login');
+        return redirect()->route('login')
+        ->with('success','Registered Your User Details');
     }
 
-
-    public function create()
-    {
-        return view('register');
-    }
 }

@@ -10,10 +10,10 @@ class LoginController extends Controller
     //
    public function login(Request $request)
     {
-        $email=$request->email; 
-
-        $password=$request->password;
         
+        $email=$request->email; 
+        $password=$request->password;
+
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             $request->session()->regenerate();
             return redirect('/home');

@@ -15,18 +15,19 @@ return new class extends Migration
         Schema::create('categorys', function(Blueprint $table){
             $table->id();
             $table->string('category_name');
+            $table->string('category_image');
             $table->boolean('is_active');
             $table->timestamps();
         });
 
         Schema::create('blogs', function (Blueprint $table){
             $table->id();
-            $table->string('tittle');
+            $table->string('title');
             $table->string('image');
             $table->string('excerpt');
             $table->text('content');
             $table->string('duration');
-            $table->boolean('is_feature');
+            $table->boolean('is_feature')->default();
             $table->string('slug');
             $table->foreignId('category_id')->constrained('categorys')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
