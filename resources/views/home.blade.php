@@ -20,24 +20,33 @@
     
     <!-- Hero Section -->
     <section class="text-center py-16 px-4">
-        <div class="flex flex-col justify-center space-x-4 mt-6">
+        <div class="flex flex col items-start">
+        <div class="flex items-center justify-center space-x-4 mt-6">
         <h1 class="text-4xl font-bold text-gray-900">Hi, I’m Dasteen<br>Front End Dev</h1>
+        <div class="h-2 w-1 bg-black"></div>
         <p class="text-gray-600 mt-4">On this blog I share tips and tricks, frameworks, projects, tutorials, etc.</p>
-        </div>
-        <div>
-        <img src="{{URL:: asset('/images/learn-coding.png')}}" alt="learn-coding" class="flex h-20 items-end">
-        </div>
         <div class="mt-6 flex justify-center">
             <input type="email" placeholder="Enter your email here..." class="border p-2 rounded-l-lg w-64">
             <button class="bg-purple-600 text-white px-4 py-2 rounded-r-lg">Subscribe</button>
+        </div>
+        </div>
+        <div>
+        <img src="{{URL:: asset('/images/learn-coding.png')}}" alt="learn-coding" class="flex flex-wrap h-20 items-end">
         </div>
     </section>
     
     <!-- Categories -->
     <section class="text-center py-8 bg-gray-200">
+        <div class="">
         <h2 class="text-2xl font-semibold">Browse The Category</h2>
+        </div>
+        @foreach($category as $category)
         <div class="flex justify-center space-x-4 mt-6">
-            <div class="p-4 bg-white rounded-lg shadow">CSS</div>
+            <div class="p-4 bg-white rounded-lg shadow w-[220px] h-[280px]">
+            <img src="{{url('/public/category_Images/'.$category->path)}}" class="w-[33px] h-[37px] top-3 left-3">
+                {{$category->category_name}}
+            </div>
+            @endforeach
             <div class="p-4 bg-white rounded-lg shadow">JavaScript</div>
             <div class="p-4 bg-purple-600 text-white rounded-lg shadow">Tailwind</div>
             <div class="p-4 bg-white rounded-lg shadow">Vue JS</div>
@@ -50,17 +59,17 @@
     <section class="py-8 px-4">
         <h2 class="text-2xl font-semibold">Featured Article</h2>
         <div class="grid grid-cols-4 gap-4 mt-6">
-            <div class="bg-white p-4 rounded-lg shadow h-80">
-                <img src="image1.jpg" alt="" class="rounded-lg h-40 w-full object-cover">
+            <div class="bg-white p-3 rounded-lg shadow h-70">
+                <img src="image1.jpg" alt="" class="rounded-lg h-40 w-40 object-cover">
                 <h3 class="mt-2 font-semibold">Fundamental of JavaScript</h3>
                 <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
             </div>
-            <div class="bg-white p-4 rounded-lg shadow h-80">
-                <img src="image2.jpg" alt="" class="rounded-lg h-40 w-full object-cover">
+            <div class="bg-white p-3 rounded-lg shadow h-70">
+                <img src="image2.jpg" alt="" class="rounded-lg h-40 w-40 object-cover">
                 <h3 class="mt-2 font-semibold">Grid CSS Make Your Life Easier</h3>
                 <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
             </div>
-            <div class="bg-white p-4 rounded-lg shadow h-80">
+            {{-- <div class="bg-white p-4 rounded-lg shadow h-80">
                 <img src="image3.jpg" alt="" class="rounded-lg h-40 w-full object-cover">
                 <h3 class="mt-2 font-semibold">Make Animated Light Mode And Dark Mode Toggle With CSS</h3>
                 <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
@@ -69,7 +78,7 @@
                 <img src="image4.jpg" alt="" class="rounded-lg h-40 w-full object-cover">
                 <h3 class="mt-2 font-semibold">Make Tic Tac Toe Games With React JS</h3>
                 <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
-            </div>
+            </div> --}}
         </div>
     </section>
 

@@ -34,21 +34,20 @@
                 <!-- Toggle Switch -->
                 <label for="toggle" class="flex items-center cursor-pointer">
                     <div class="relative">
-                        <input type="checkbox" id="toggle" class="sr-only" 
-                        >
+                        <input type="checkbox" id="toggle" class="sr-only">
                         <div class="w-12 h-6 bg-gray-300 rounded-full shadow-inner"></div>
-                        <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
+                    <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
                     </div>
                     <span class="ml-3 text-gray-700">Feature Blog</span>
                 </label>
 
                 <!-- Wider Dropdown -->
-                <select name="category_id" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 w-40">
+                {{-- <select name="category_id" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 w-40">
                     <option>Tech</option>
                     <option>Food</option>
                 </select>
             </div>
-            
+             --}}
             <!-- Submit Button with Purple Color and Lower Width -->
             <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 w-1/3 mx-auto block">Submit</button>
         </form>

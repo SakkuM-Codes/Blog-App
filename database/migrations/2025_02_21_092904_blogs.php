@@ -1,4 +1,4 @@
-<?php
+            <?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('category_name');
             $table->string('category_image');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
 
@@ -24,10 +24,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('image');
-            $table->string('excerpt');
+            $table->string('excerpt');  
             $table->text('content');
             $table->string('duration');
-            $table->boolean('is_feature')->default();
+            $table->boolean('is_feature')->default(false);
             $table->string('slug');
             $table->foreignId('category_id')->constrained('categorys')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');

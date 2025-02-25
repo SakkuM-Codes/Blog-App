@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -28,12 +30,12 @@ class BlogController extends Controller
     $blog->content = $request->content;
     $blog->image = $path;  
     $blog->user_id = Auth::id();
-    $blog->category_id = $request->category_id;
+    // $blog->category_id = $request->category_id;
     $blog->slug = Str::slug($request->title); 
     $blog->excerpt = Str::limit(strip_tags($request->content), 100); 
     $blog->duration = '5 min read'; 
     $blog->is_feature = false; 
-    $blog->save();
+         
 
         // $blogs = Blog::findOrFail($request->blog_id);
         // $blogs->is_feature = $request->is_feature;
