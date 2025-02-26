@@ -8,8 +8,8 @@
 </head>
 <body class="bg-gray-200">
     <!-- Navbar -->
-    <nav class="bg-gray-200 shadow-md p-4 flex justify-between items-center">
-        <div class="text-xl font-bold text-gray-900">Dasteen<span class="text-purple-500">.Blog</span></div>
+    <nav class="bg-gray-200 shadow-xl shadow-gray-700/50 p-4 flex justify-between items-center border-b border-gray-300">
+        <div class="text-xl font-bold text-gray-900">Dasteen<span class="text-purple-500 text-lg">.Blog</span></div>
         <div class="space-x-6">
             <a href="#" class="text-gray-700">Home</a>
             <a href="#" class="text-gray-700">Category</a>
@@ -19,38 +19,55 @@
     </nav>
     
     <!-- Hero Section -->
-    <section class="text-center py-16 px-4">
-        <div class="flex flex col items-start">
-        <div class="flex items-center justify-center space-x-4 mt-6">
-        <h1 class="text-4xl font-bold text-gray-900">Hi, I’m Dasteen<br>Front End Dev</h1>
-        <div class="h-2 w-1 bg-black"></div>
-        <p class="text-gray-600 mt-4">On this blog I share tips and tricks, frameworks, projects, tutorials, etc.</p>
-        <div class="mt-6 flex justify-center">
-            <input type="email" placeholder="Enter your email here..." class="border p-2 rounded-l-lg w-64">
-            <button class="bg-purple-600 text-white px-4 py-2 rounded-r-lg">Subscribe</button>
+<section class="flex items-center shadow-md shadow-gray-400 justify-between px-8 py-16 bg-gray-200">
+    <!-- Left Content -->
+    <div class="max-w-lg">
+        <h1 class="text-5xl font-bold text-gray-900 leading-tight">
+            Hi, I’m Dasteen<br> 
+            <span class="text-gray-900">Front End Dev</span>
+        </h1>
+         <div class="flex items-center space-x-4 mt-4">
+            <div class="h-10 w-1 bg-black"></div>
+            <p class="text-gray-700 text-sm">
+                On this blog, I share tips and tricks, frameworks, projects, tutorials, etc.<br> 
+                Make sure you subscribe to get the latest updates.
+            </p>
         </div>
+        
+        <!-- Email Subscription -->
+        <div class="mt-6 flex">
+            <input type="email" placeholder="Enter your email here..." 
+                class="border p-3 w-64 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <button class="bg-purple-600 text-white px-5 py-3 rounded-r-lg font-medium hover:bg-purple-700">
+                Subscribe
+            </button>
         </div>
-        <div>
-        <img src="{{URL:: asset('/images/learn-coding.png')}}" alt="learn-coding" class="flex flex-wrap h-20 items-end">
-        </div>
-    </section>
+    </div>
+
+    <!-- Right Side Image -->
+    <div class="w-[400px]">
+        <img src="{{ asset('images/learn-coding.png') }}" alt="learn-coding" class="w-full">
+    </div>
+</section>
+
     
     <!-- Categories -->
     <section class="text-center py-8 bg-gray-200">
         <div class="">
         <h2 class="text-2xl font-semibold">Browse The Category</h2>
+        <h2 class="text-2xl font-semibold"><a>See all the categories</a></h2>
         </div>
-        @foreach($category as $category)
         <div class="flex justify-center space-x-4 mt-6">
+            {{-- @foreach($category as $category) --}}
             <div class="p-4 bg-white rounded-lg shadow w-[220px] h-[280px]">
-            <img src="{{url('/public/category_Images/'.$category->path)}}" class="w-[33px] h-[37px] top-3 left-3">
-                {{$category->category_name}}
+            <img src="" class="w-[33px] h-[37px] top-3 left-3">
+                {{-- {{$category->category_name}} --}}
             </div>
-            @endforeach
-            <div class="p-4 bg-white rounded-lg shadow">JavaScript</div>
+            {{-- <div class="p-4 bg-white rounded-lg shadow">JavaScript</div>
             <div class="p-4 bg-purple-600 text-white rounded-lg shadow">Tailwind</div>
             <div class="p-4 bg-white rounded-lg shadow">Vue JS</div>
-            <div class="p-4 bg-white rounded-lg shadow">React JS</div>
+            <div class="p-4 bg-white rounded-lg shadow">React JS</div> --}}
+        {{-- @endforeach --}}
         </div>
     </section>
     
