@@ -9,14 +9,12 @@ class Category extends Model
     //
     use HasFactory;
 
-    protected $fillable = ['category_name', 'is_active'];
+    protected $fillable = ['category_name', 'is_active', 'slug'];
 
     protected $table = 'categorys';
 
-    public function Blog(): HasMany
+    public function blogs()
     {
-
-        return $this->hasMany(Blog::class);
-
+        return $this->belongsToMany(Blog::class, 'blogs_categorys', 'blog_id', 'category_id');
     }
 }

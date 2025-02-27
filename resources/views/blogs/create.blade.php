@@ -4,17 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
-<!-- Include jQuery & Bootstrap -->
+
+        <!-- Include jQuery & Bootstrap -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <!-- Include Summernote JS -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
 
+    <!-- Include Tom Select JS (via CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+
     <title>Create Blog</title>
+
 </head>
+
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl">
         <h2 class="text-3xl font-semibold text-gray-800 text-center mb-6">Create Blog</h2>
@@ -40,15 +46,14 @@
                     </div>
                     <span class="ml-3 text-gray-700">Feature Blog</span>
                 </label>
-
-                <!-- Wider Dropdown -->
-                {{-- <select name="category_id" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 w-40">
-                    <option>Tech</option>
-                    <option>Food</option>
+                
+                <select name="category_id[]" id="categoryDropdown" multiple class= " flex space-y-4 w-full">           
+                    @foreach($categorys as $category)
+                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                    @endforeach
                 </select>
             </div>
-             --}}
-            <!-- Submit Button with Purple Color and Lower Width -->
+            
             <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 w-1/3 mx-auto block">Submit</button>
         </form>
     </div>
@@ -61,40 +66,33 @@
     toggle.addEventListener('change', () => {
         if (toggle.checked) {
             dot.classList.add('translate-x-6');
-            dot.classList.remove('bg-white'); // Remove white background
-            dot.classList.add('bg-purple-600'); // Add purple background
+            dot.classList.remove('bg-white'); 
+            dot.classList.add('bg-purple-600'); 
         } else {
             dot.classList.remove('translate-x-6');
-            dot.classList.remove('bg-purple-600'); // Remove purple background
-            dot.classList.add('bg-white'); // Re-add white background
+            dot.classList.remove('bg-purple-600'); 
+            dot.classList.add('bg-white'); 
         }
     });
 </script>
-{{-- <script>
-    $(document).ready(function () {
-        $('#toggle').on('change', function () {
-            let blogId = $(this).data('blog-id');
-            let isFeature = $(this).is(':checked') ? 1 : 0;
 
-            $.ajax({
-                url: "{{ route('blogs.store') }}",
-                type: "POST",
-                data: {
-                    blog_id: blogId,
-                    is_feature: isFeature,
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function (response) {
-                    alert(response.message);
-                },
-                error: function () {
-                    alert("An error occurred while updating the blog status.");
-                }
-            });
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let select = document.getElementById("categoryDropdown");
+        
+        // Initialize Tom Select
+        new TomSelect(select, {
+            placeholder: "Select Categories...",
+            maxItems: null,  // Allows multiple selections
+            plugins: {
+                remove_button: { title: 'Remove this category' }  // Enables cross (×) to remove items
+            }
         });
-    });
-</script> --}}
 
+        // Hide the original select after Tom Select loads
+        select.classList.add("hidden");
+    });
+</script>
     
 <script>
     $(document).ready(function() {
@@ -104,5 +102,6 @@
             });
         });
     </script>
+
 </body>
 </html>

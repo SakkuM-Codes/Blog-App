@@ -18,8 +18,12 @@ Route::get('home', [BlogController::class, 'home'])->name('home');
 			//Blogs Route
 Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
 Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
+Route::get('/blogs/list', [BlogController::class, 'list'])->name('blogs.list');
 
 
 		//Category Routes
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
 Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+Route::get('home', [CategoryController::class, 'home'])->name('home');
+Route::get('/category/list', [CategoryController::class, 'list'])->name('category.list');
+

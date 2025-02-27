@@ -8,7 +8,7 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'image', 'excerpt', 'content', 'duration', 'is_feature', 'slug', 'category_id', 'user_id'];
+    protected $fillable = ['title', 'image', 'excerpt', 'content', 'duration', 'is_feature', 'slug','user_id'];
 
     public function User(): HasMany
     {
@@ -16,9 +16,9 @@ class Blog extends Model
         return $this->hasMany(User::class);
     }
 
-    public function Category(): belongsTo
+    public function categorys()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class, 'blogs_categorys', 'blog_id', 'category_id');
     }
 
 }
