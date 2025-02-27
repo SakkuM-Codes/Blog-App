@@ -181,10 +181,11 @@
 <!-- Footer -->
 <footer class="bg-gray-100 text-gray-800 py-10 mt-10">
     <div class="container mx-auto grid grid-cols-4 gap-6 px-10">
-        <div>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+
             <h3 class="text-xl font-bold">Dasteen<span class="text-purple-600 text-sm">.blog</span></h3>
             <p class="mt-2 text-gray-600 text-lg">Digital assets by Dastin Damrawan</p>
-            <div class="flex p-6 top-">
+            <div class="flex space-x-4 mt-4">
                 <img src="{{ asset('images/Medium Monogram.png') }}" class="h-[30px] w-[30px]">
                 <img src="{{ asset('images/Vector.png') }}" class="h-[22px] w-[17.94px]">
                 <img src="{{ asset('images/instagram.png') }}" class="h-[24px] w-[24px]">
@@ -200,6 +201,8 @@
                 <li>React JS</li>
             </ul>
         </div>
+
+        
         <div class="">
             <h3 class="text-lg font-semibold">About Me</h3>
             <ul class="mt-2 text-gray-600">
@@ -207,14 +210,35 @@
                 <li>Projects</li>
                 <li>Achievement</li>
             </ul>
-        </div class="">
+        </div>
+
+
         <div>
             <h3 class="text-lg font-semibold">Get In Touch</h3>
             <p class="mt-2 text-gray-600">+62-800X-XXX-XX</p>
             <p class="text-gray-600">sakina@gmail.com</p>
         </div>
     </div>
-    <div class="text-center text-gray-500 mt-6">&copy; 2022 Digitaldastin - Made with ❤️ in Jakarta, Indonesia</div>
+
+
+    <!-- Follow Us -->
+            <div>
+                <h3 class="text-lg font-semibold text-gray-900">FOLLOW US</h3>
+                <ul class="mt-3 space-y-2 text-gray-600">
+                    <li><a href="#">Medium</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="mt-8 border-t border-gray-300 pt-4 flex flex-col md:flex-row justify-between text-gray-600 text-sm">
+            <p>© 2022 Digitaldastin</p>
+            <p>Made With <span class="text-red-500">❤️</span> Jakarta, Indonesia</p>
+        </div>
+    </div>
 </footer>
 </body>
 </html>

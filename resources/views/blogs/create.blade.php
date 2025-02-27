@@ -43,11 +43,11 @@
                         <input type="checkbox" id="toggle" class="sr-only">
                         <div class="w-12 h-6 bg-gray-300 rounded-full shadow-inner"></div>
                     <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
-                    </div>
+                        </div>
                     <span class="ml-3 text-gray-700">Feature Blog</span>
                 </label>
                 
-                <select name="category_id[]" id="categoryDropdown" multiple class= " flex space-y-4 w-full">           
+                <select name="category_id[]" id="categoryDropdown" multiple class="w-full h-10 border border-gray-300 rounded-lg">
                     @foreach($categorys as $category)
                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                     @endforeach
