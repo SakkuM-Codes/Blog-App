@@ -52,10 +52,10 @@
 
     
     <!-- Categories -->
-    <section class=" py-8 bg-gray-200">
+    <section class="py-8 bg-gray-200">
         <div class="flex justify-between items-center mb-6">
         <h2 class="text-lg font-semibold text-gray-900 flex items-center">Browse The Category<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
-        <h2 class="relative text-lg font-semibold"><a href="" class="hover:text-gray-900 hover:underline flex items-center">See all the categories<span class="ml-1"> > </span></a></h2>
+        <h2 class="relative text-lg font-semibold"><a href="{{url('/category/list')}}" class="hover:text-gray-900 hover:underline flex items-center">See all the categories<span class="ml-1"> > </span></a></h2>
         </div>
         <div class="flex flex-wrap gap-6 justify-center space-x-4 mt-5">
             @foreach($category as $category)
@@ -179,49 +179,53 @@
 
 
 <!-- Footer -->
-<footer class="bg-gray-100 text-gray-800 py-10 mt-10">
-    <div class="container mx-auto grid grid-cols-4 gap-6 px-10">
+    <footer class="bg-gray-100 text-gray-800 py-10 mt-10">
+    <div class="container mx-auto px-6 md:px-12 lg:px-20">
         <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-
-            <h3 class="text-xl font-bold">Dasteen<span class="text-purple-600 text-sm">.blog</span></h3>
-            <p class="mt-2 text-gray-600 text-lg">Digital assets by Dastin Damrawan</p>
-            <div class="flex space-x-4 mt-4">
-                <img src="{{ asset('images/Medium Monogram.png') }}" class="h-[30px] w-[30px]">
+            <!-- Logo & Description -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900">Dasteen<span class="text-purple-500 text-sm">.blog</span></h2>
+                <p class="text-gray-600 mt-2 text-sm">Digitaldastin by Dastin Darmawan</p>
+                <div class="flex space-x-4 mt-4">
+                    <img src="{{ asset('images/Medium Monogram.png') }}" class="h-[30px] w-[30px]">
                 <img src="{{ asset('images/Vector.png') }}" class="h-[22px] w-[17.94px]">
                 <img src="{{ asset('images/instagram.png') }}" class="h-[24px] w-[24px]">
                 <img src="{{ asset('images/linkedin.png') }}" class="h-[24px] w-[24px]">
+                </div>
             </div>
-        </div>
-        <div class="">
-            <h3 class="text-lg font-semibold">Category</h3>
-            <ul class="mt-2 text-gray-600">
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>Tailwind</li>
-                <li>React JS</li>
-            </ul>
-        </div>
 
-        
-        <div class="">
-            <h3 class="text-lg font-semibold">About Me</h3>
-            <ul class="mt-2 text-gray-600">
-                <li>About Me</li>
-                <li>Projects</li>
-                <li>Achievement</li>
-            </ul>
-        </div>
+            <!-- Categories -->
+            <div>
+                <h3 class="text-lg font-semibold text-gray-900">CATEGORY</h3>
+                <ul class="mt-3 space-y-2 text-gray-600">
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">Javascript</a></li>
+                    <li><a href="#">Tailwind</a></li>
+                    <li><a href="#">React JS</a></li>
+                    <li><a href="#">More Category</a></li>
+                </ul>
+            </div>
 
+            <!-- About Me -->
+            <div>
+                <h3 class="text-lg font-semibold text-gray-900">ABOUT ME</h3>
+                <ul class="mt-3 space-y-2 text-gray-600">
+                    <li><a href="#">About Me</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Achievement</a></li>
+                </ul>
+            </div>
 
-        <div>
-            <h3 class="text-lg font-semibold">Get In Touch</h3>
-            <p class="mt-2 text-gray-600">+62-800X-XXX-XX</p>
-            <p class="text-gray-600">sakina@gmail.com</p>
-        </div>
-    </div>
+            <!-- Get in Touch -->
+            <div>
+                <h3 class="text-lg font-semibold text-gray-900">GET IN TOUCH</h3>
+                <ul class="mt-3 space-y-2 text-gray-600">
+                    <li>+62-8XXX-XXX-XX</li>
+                    <li>demo@gmail.com</li>
+                </ul>
+            </div>
 
-
-    <!-- Follow Us -->
+            <!-- Follow Us -->
             <div>
                 <h3 class="text-lg font-semibold text-gray-900">FOLLOW US</h3>
                 <ul class="mt-3 space-y-2 text-gray-600">

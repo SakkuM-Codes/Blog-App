@@ -21,14 +21,14 @@ class BlogController extends Controller
    public function store(Request $request)
     {
     
-        $path = $request->file('image')->store('public/', 'public');
+        $path = $request->file('image')->store('public', 'public');
         $blog = new Blog();
         $blog->title = $request->title;
         $blog->content = $request->content;
         $blog->image = $path;  
         $blog->user_id = Auth::id();
         $blog->categorys()->attach($request->category_id);
-        $blog->blogs()->attach($request->blog_id);
+        //$blog->blogs()->attach($request->blog_id);
         $blog->slug = Str::slug($request->title); 
         $blog->excerpt = Str::limit(strip_tags($request->content), 100); 
         $blog->duration = $request->duration; 
@@ -46,6 +46,6 @@ class BlogController extends Controller
     public function list(Request $request)
     {
         $user=Blog::all();
-        return view('home',['blogs'=>$user]);
+        return view('blogs.list',['blogs'=>$user]);
     }
 }
