@@ -25,7 +25,7 @@
             </div>
 
             <div class="text-right">
-                <a href="#" class="text-purple-600 hover:underline">Forgot Password?</a>
+                <a href="{{url('/forget-passworc')}}" class="text-purple-600 hover:underline">Forgot Password?</a>
             </div>
 
             <button type="submit"

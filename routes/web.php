@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\Auth\PasswordResetController;
 
 
 Route::view('login','login');
@@ -28,6 +29,6 @@ Route::get('home', [CategoryController::class, 'home'])->name('home');
 Route::get('/category/list', [CategoryController::class, 'list'])->name('category.list');
 
 
-Route::get('/forgotpassword', [PasswordResetController::class, 'showForgotPasswordForm'])->name('password.request');
-Route::post('/forgotpassword', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
+Route::get('/forgot-password', [PasswordResetController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
 
