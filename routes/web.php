@@ -28,6 +28,6 @@ Route::get('home', [CategoryController::class, 'home'])->name('home');
 Route::get('/category/list', [CategoryController::class, 'list'])->name('category.list');
 
 
-Route::get('/forgot-password', [PasswordResetController::class, 'showForgotPasswordForm'])->name('password.request');
-Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
+Route::get('/forgotpassword', [PasswordResetController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgotpassword', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
 
