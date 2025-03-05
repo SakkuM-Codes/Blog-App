@@ -3,18 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dasteen Blog</title>
+    <title>Home Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-200">
     <!-- Navbar -->
     <nav class="bg-gray-200 shadow-xl shadow-gray-700/50 p-4 flex justify-between items-center border-b border-gray-300">
-        <div class="text-xl font-bold text-gray-900">Dasteen<span class="text-purple-500 text-lg">.Blog</span></div>
+        <div class="text-xl font-bold text-gray-900">Dasteen<span class="text-purple-500 text-sm">.blog</span></div>
         <div class="space-x-6">
+            @guest
             <a href="#" class="text-gray-700">Home</a>
             <a href="#" class="text-gray-700">Category</a>
             <a href="#" class="text-gray-700">Blogs</a>
-            <button class="bg-purple-600 text-white px-4 py-2 rounded-lg">LogOut</button>
+            <a href="login"><button class="bg-purple-600 text-white px-4 py-2 rounded-lg">login</button></a>
+            {{-- <button class="bg-purple-600 text-white px-4 py-2 rounded-lg">LogOut</button> --}}
+            @else
+            <div class="flex justify-between items-center gap-4">
+                 <a href="#" class="text-gray-700">Home</a>
+
+                  <div x-data="{ open: false }" class="relative">
+                <button @click="open = !open" class="text-gray-700 focus:outline-none">
+                    Category
+                </button>
+                <div x-show="open" @click.away="open = false"
+                    class="absolute left-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg">
+                    <a href='/category/list' class="block px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-100">Category List</a>
+                    <a href='/category/create' class="block px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-100">Category Create</a>
+                </div>
+            </div>
+
+                <div x-data="{ open: false }" class="relative">
+                <button @click="open = !open" class="text-gray-700 focus:outline-none">
+                    Blogs 
+                </button>
+            <div x-show="open" @click.away="open = false"
+                class="absolute left-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg">
+                <a href='/blogs/list' class="block px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-100">Blogs List</a>
+                <a href='/blogs/create' class="block px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-100">Blogs Create</a>
+            </div>
+        </div>
+
+            <a href="logout"><button class="bg-purple-600 text-white px-4 py-2 rounded-lg">LogOut</button></a>
+            @endguest
+        </div>
         </div>
     </nav>
     
@@ -68,98 +100,206 @@
     </section>
     
     <!-- Featured Articles -->
-    <div class="bg-white pb-9">
-    <section class="py-8 px-4">
-        <h2 class="text-2xl font-semibold">Featured Article</h2>
-        <div class="grid grid-cols-4 gap-4 mt-6">
-            <div class="bg-white p-3 rounded-lg shadow h-70">
-                <img src=" " alt="" class="rounded-lg h-40 w-40 object-cover">
-                <h3 class="mt-2 font-semibold">Fundamental of JavaScript</h3>
-                <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
+    <div class="bg-white pb-9 pt-14">
+    <section class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold items-center flex text-gray-900">Featured Article<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
+            <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg overflow-hidden">
+                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech1.jpeg') }}" alt="Code Image">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Array In Javascript - Learn JS #3</h3>
+                    <div class="flex items-center mt-3">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                        <div class="ml-2 text-gray-600 text-sm">
+                            <p>Dasteen</p>
+                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="bg-white p-3 rounded-lg shadow h-70">
-                <img src=" " alt="" class="rounded-lg h-40 w-40 object-cover">
-                <h3 class="mt-2 font-semibold">Grid CSS Make Your Life Easier</h3>
-                <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
+            <div class="bg-white rounded-lg overflow-hidden">
+                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech2.jpeg') }}" alt="Book Image">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Fundamental Of Javascript</h3>
+                    <div class="flex items-center mt-9">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                        <div class="ml-2 text-gray-600 text-sm">
+                            <p>Dasteen</p>
+                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {{-- <div class="bg-white p-4 rounded-lg shadow h-80">
-                <img src="image3.jpg" alt="" class="rounded-lg h-40 w-full object-cover">
-                <h3 class="mt-2 font-semibold">Make Animated Light Mode And Dark Mode Toggle With CSS</h3>
-                <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
+        </div>
+    </section>
+
+
+<section class="max-w-6xl mx-auto pt-10">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold flex items-center text-gray-900">Javascript<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
+            <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg overflow-hidden">
+                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech1.jpeg') }}" alt="Code Image">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Array In Javascript - Learn JS #3</h3>
+                    <div class="flex items-center mt-3">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                        <div class="ml-2 text-gray-600 text-sm">
+                            <p>Dasteen</p>
+                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="bg-white p-4 rounded-lg shadow h-80">
-                <img src="image4.jpg" alt="" class="rounded-lg h-40 w-full object-cover">
-                <h3 class="mt-2 font-semibold">Make Tic Tac Toe Games With React JS</h3>
-                <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
+            <div class="bg-white rounded-lg overflow-hidden">
+                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech2.jpeg') }}" alt="Book Image">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Fundamental Of Javascript</h3>
+                    <div class="flex items-center mt-9">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                        <div class="ml-2 text-gray-600 text-sm">
+                            <p>Dasteen</p>
+                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="max-w-6xl mx-auto pt-10">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold flex items-center text-gray-900">CSS<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
+            <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg overflow-hidden">
+                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech1.jpeg') }}" alt="Code Image">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Flex Box CSS : Everything you need to know</h3>
+                    <div class="flex items-center mt-3">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                        <div class="ml-2 text-gray-600 text-sm">
+                            <p>Dasteen</p>
+                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg overflow-hidden">
+                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech2.jpeg') }}" alt="Book Image">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Grid CSS Make Your Life Esier</h3>
+                    <div class="flex items-center mt-9">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                        <div class="ml-2 text-gray-600 text-sm">
+                            <p>Dasteen</p>
+                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="max-w-6xl mx-auto pt-10">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold flex items-center text-gray-900">Food<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
+            <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg overflow-hidden">
+                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech1.jpeg') }}" alt="Code Image">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Chilli Chicken Recipe - Easy To Make</h3>
+                    <div class="flex items-center mt-3">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                        <div class="ml-2 text-gray-600 text-sm">
+                            <p>Dasteen</p>
+                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg overflow-hidden">
+                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech2.jpeg') }}" alt="Book Image">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Chocolate Lava Cake</h3>
+                    <div class="flex items-center mt-9">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                        <div class="ml-2 text-gray-600 text-sm">
+                            <p>Dasteen</p>
+                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="bg-white rounded-lg overflow-hidden">
+                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech3.jpeg') }}" alt="Workspace Image">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">7 Project With Javascript You Must Try For Your Portfolio</h3>
+                    <div class="flex items-center mt-3">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                        <div class="ml-2 text-gray-600 text-sm">
+                            <p>Dasteen</p>
+                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+            {{-- <div class="bg-white rounded-lg overflow-hidden">
+                <img class="w-full h-40 object-cover" src="{{ asset('Images/Article_Image.png') }}" alt="Calculator Image">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">Make Simple Calculator With Javascript</h3>
+                    <div class="flex items-center mt-3">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                        <div class="ml-2 text-gray-600 text-sm">
+                            <p>Dasteen</p>
+                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
+                        </div>
+                    </div>
+                </div>
             </div> --}}
         </div>
     </section>
 
 
-    <section class="py-8 px-3">
-    <h2 class="text-2xl font-semibold">Javascript</h2>
-    <div class="grid grid-cols-4 gap-4 mt-6">
-        <div class="bg-white p-3 rounded-lg shadow h-80">
-            <img src=" " alt="" class="rounded-lg h-40 w-full object-cover">
-            <h3 class="mt-2 font-semibold">Array in Javascript - Learn JS #3</h3>
-            <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow h-80">
-            <img src=" " alt="" class="rounded-lg h-40 w-full object-cover">
-            <h3 class="mt-2 font-semibold">7 Projects With Javascript You Must Try</h3>
-            <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow h-80">
-            <img src=" " alt="" class="rounded-lg h-40 w-full object-cover">
-            <h3 class="mt-2 font-semibold">Make Simple Calculator With Javascript</h3>
-            <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
-        </div>
-    </div>
-</section>
-
-    <section class="py-8 px-4">
-    <h2 class="text-2xl font-semibold">Food</h2>
-    <div class="grid grid-cols-4 gap-4 mt-6">
-        <div class="bg-white p-4 rounded-lg shadow h-80">
-            <img src=" " alt="" class="rounded-lg h-40 w-full object-cover">
-            <h3 class="mt-2 font-semibold">Chicken Kabab - Easy Recipe #3</h3>
-            <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow h-80">
-            <img src=" " alt="" class="rounded-lg h-40 w-full object-cover">
-            <h3 class="mt-2 font-semibold">7 Projects With Javascript You Must Try</h3>
-            <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow h-80">
-            <img src=" " alt="" class="rounded-lg h-40 w-full object-cover">
-            <h3 class="mt-2 font-semibold">Make Simple Calculator With Javascript</h3>
-            <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
-        </div>
-    </div>
-</section>
 
 
 
-<section class="py-8 px-4">
-    <h2 class="text-2xl font-semibold">React JS</h2>
-    <div class="grid grid-cols-4 gap-4 mt-6">
-        <div class="bg-white p-4 rounded-lg shadow h-80">
-            <img src=" " alt="" class="rounded-lg h-40 w-full object-cover">
-            <h3 class="mt-2 font-semibold">First Month Of Learning React JS</h3>
-            <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow h-80">
-            <img src=" " alt="" class="rounded-lg h-40 w-full object-cover">
-            <h3 class="mt-2 font-semibold">Build Markdown Editor With React JS</h3>
-            <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow h-80">
-            <img src=" " alt="" class="rounded-lg h-40 w-full object-cover">
-            <h3 class="mt-2 font-semibold">Getting Started With React JS</h3>
-            <p class="text-gray-500 text-sm">Jan 10, 2022 - 3 Min Read</p>
-        </div>
-    </div>
-</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="text-center mt-8">
     <button class="bg-purple-600 text-white px-6 py-3 rounded-lg">More Articles</button>

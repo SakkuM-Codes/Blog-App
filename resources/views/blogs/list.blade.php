@@ -12,7 +12,7 @@
     <nav class="bg-gray-200 shadow-xl shadow-gray-700/50 p-4 flex justify-between items-center border-b border-gray-300">
         <div class="text-xl font-bold text-gray-900">Dasteen<span class="text-purple-500 text-lg">.Blog</span></div>
         <div class="space-x-6">
-            <a href="#" class="text-gray-700">Home</a>
+            <a href="{{url('home')}}" class="text-gray-700">Home</a>
             <a href="#" class="text-gray-700">Category</a>
             <a href="#" class="text-gray-700">Blogs</a>
             <button class="bg-purple-600 text-white px-4 py-2 rounded-lg">LogOut</button>
@@ -20,18 +20,28 @@
     </nav>
 
 
-<section class="py-8 px-3">
-    <div class="flex justify-between items-center mb-6">
-    @foreach($blogs as $blog)
-    {{-- <h2 class="text-2xl font-semibold">{{$blog->title}}</h2> --}}
-    <div class="grid grid-cols-4 gap-4 mt-6">
-        <div class="bg-white p-3 rounded-lg shadow h-80">
-            <img src="{{url('public/'.$blog->image)}}" alt="" class="rounded-lg h-40 w-full object-cover">
-            <h3 class="mt-2 font-semibold">{{$blog ->excerpt}}</h3>
-            <p class="text-gray-500 text-sm">{{$blog->created_at->format('M d, Y')}} - {{$blog->duration.'Read'}}</p>
+<section class="max-w-6xl mx-auto pt-10 ">
+        <div class="flex justify-between items-center mb-4">
+           {{--  <h2 class="text-xl font-semibold flex items-center text-gray-900">CSS<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
+            <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
+        </div> --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+             @foreach($blogs as $blog)
+            <div class="bg-white rounded-lg overflow-hidden">
+                <img class="w-full h-40 object-cover" src="{{url('storage/'.$blog->image)}}" alt="Code Image">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg">{{$blog ->excerpt}}</h3>
+                    <div class="flex items-center mt-3">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                        <div class="ml-2 text-gray-600 text-sm">
+                            <p>Dasteen</p>
+                            <p>{{$blog->created_at->format('M d, Y')}} &bull; {{$blog->duration.' Read'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
-    </div>
-    @endforeach
     </div>
 </section>
 

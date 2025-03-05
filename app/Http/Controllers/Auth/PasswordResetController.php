@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -10,10 +9,11 @@ use Illuminate\Support\Str;
 use App\Models\User;
 
 class PasswordResetController extends Controller
-{
+{   
+
     public function showForgotPasswordForm()
     {
-        return view('auth.forgot-password');
+        return view('forgetPassword');
     }
 
     // Send Reset Link Email
@@ -25,13 +25,14 @@ class PasswordResetController extends Controller
 
         return $status === Password::RESET_LINK_SENT
             ? back()->with('status', __($status))
-            : back()->withErrors(['email' => __($status)]);
+            : back()->withInput($request->only('email'))
+                    ->withErrors(['email' => __($status)]);
     }
 
     // Show the Reset Password form
     public function showResetPasswordForm($token)
     {
-        return view('auth.reset-password', ['token' => $token]);
+        return view('reset-password', ['token' => $token]);
     }
 
     // Handle Reset Password

@@ -24,9 +24,9 @@ class User extends Authenticatable
         'password',
     ];
 
-        public function blogs() : belongsTo
+        public function blogs():HasMany
         {
-            return $this->belongsTo(Blog::class, 'user_id');
+            return $this->hasMany(Blog::class, 'user_id');
         }
 
     /**

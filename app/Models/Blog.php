@@ -10,15 +10,15 @@ class Blog extends Model
 
     protected $fillable = ['title', 'image', 'excerpt', 'content', 'duration', 'is_feature', 'slug','user_id'];
 
-    public function User(): HasMany
+    public function User()
     {
 
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function categorys()
     {
-        return $this->belongsToMany(Category::class, 'blogs_categorys', 'blog_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'blogs_categorys', 'category_id', 'blog_id');
     }
 
 }

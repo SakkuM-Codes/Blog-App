@@ -13,8 +13,8 @@ class Category extends Model
 
     protected $table = 'categorys';
 
-    public function blogs()
+    public function blogscat()
     {
-        return $this->belongsToMany(Blog::class, 'blogs_categorys', 'category_id', 'blog_id');
+        return $this->belongsToMany(Blog::class, 'blogs_categorys', 'blog_id', 'category_id');
     }
 }
