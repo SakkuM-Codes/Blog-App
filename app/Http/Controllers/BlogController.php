@@ -27,15 +27,15 @@ class BlogController extends Controller
         $blog->content = $request->content;
         $blog->image = $path;  
         $blog->user_id = Auth::id();
-        // $categorys = $blog->blogscat();
-        // $blog->$blogscat()->attach($request->blog_id);
-        $blog->categorys()->attach($request->category_id);
-        $blog->categorys()->attach($request->blog_id);
         $blog->slug = Str::slug($request->title); 
         $blog->excerpt = Str::limit(strip_tags($request->excerpt), 100); 
         $blog->duration = $request->duration; 
-        $blog->is_feature = false;
+        $blog->is_feature = $request->has('toggle');        
         $blog->save();
+
+
+         // Attach the selected categories (category_id[] from your form)
+        $blog->categorys()->attach($request->category_id);
 
         return redirect('/blogs/list');
     }
@@ -44,5 +44,13 @@ class BlogController extends Controller
     {
         $user=Blog::all();
         return view('blogs.list',['blogs'=>$user]);
+    }
+
+    public function home(Request $request)
+    {
+        $category = Category::where('category_name', 'FOOD')->first();
+        $blogs = $category ? $category->blogs : collect();
+
+        return view('home', compact('blogs', 'category'));
     }
 }

@@ -214,92 +214,28 @@
 
     <section class="max-w-6xl mx-auto pt-10">
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold flex items-center text-gray-900">Food<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
+            <h2 class="text-xl font-semibold flex items-center text-gray-900">{{ $category->category_name ?? 'Category' }}<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
             <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            @foreach($blogs as $blog)
             <div class="bg-white rounded-lg overflow-hidden">
-                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech1.jpeg') }}" alt="Code Image">
+                <img class="w-full h-40 object-cover" src="{{url('storage/'.$blog->image)}}" alt="Code Image">
                 <div class="p-4">
-                    <h3 class="font-semibold text-lg">Chilli Chicken Recipe - Easy To Make</h3>
+                    <h3 class="font-semibold text-lg">{{$blog ->excerpt}}</h3>
                     <div class="flex items-center mt-3">
                         <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
                         <div class="ml-2 text-gray-600 text-sm">
-                            <p>Dasteen</p>
-                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
+                            <p>{{ $blog->user->user_name ?? 'Author' }}</p>
+                            <p>{{ $blog->created_at->format('M d, Y') }} &bull; {{$blog->duration.' Read'}}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bg-white rounded-lg overflow-hidden">
-                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech2.jpeg') }}" alt="Book Image">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg">Chocolate Lava Cake</h3>
-                    <div class="flex items-center mt-9">
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
-                        <div class="ml-2 text-gray-600 text-sm">
-                            <p>Dasteen</p>
-                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- <div class="bg-white rounded-lg overflow-hidden">
-                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech3.jpeg') }}" alt="Workspace Image">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg">7 Project With Javascript You Must Try For Your Portfolio</h3>
-                    <div class="flex items-center mt-3">
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
-                        <div class="ml-2 text-gray-600 text-sm">
-                            <p>Dasteen</p>
-                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="bg-white rounded-lg overflow-hidden">
-                <img class="w-full h-40 object-cover" src="{{ asset('Images/Article_Image.png') }}" alt="Calculator Image">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg">Make Simple Calculator With Javascript</h3>
-                    <div class="flex items-center mt-3">
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
-                        <div class="ml-2 text-gray-600 text-sm">
-                            <p>Dasteen</p>
-                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
+            @endforeach
         </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 <div class="text-center mt-8">
     <button class="bg-purple-600 text-white px-6 py-3 rounded-lg">More Articles</button>

@@ -18,7 +18,14 @@ class Blog extends Model
 
     public function categorys()
     {
-        return $this->belongsToMany(Category::class, 'blogs_categorys', 'category_id', 'blog_id');
+        return $this->belongsToMany(Category::class, 'blogs_categorys', 'blog_id', 'category_id');
     }
+
+
+     // To get category IDs for a specific blog:
+
+    // $blog = Blog::find(1);
+
+    // $category = $blog->categorys->pluck('id')->toArray(); 
 
 }

@@ -17,12 +17,6 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-        // $request->validate()
-        // ([
-        //     'category_name' => 'required|string|max:255',
-        //     'category_image' => 'required|string|mimes:jpeg,png,jpg,gif|max:2048',
-        // ]);
-
         $path = $request->file('category_image')->store('public', 'public');
         $imagarray=explode('/',$path);
         $image=$imagarray[1];
