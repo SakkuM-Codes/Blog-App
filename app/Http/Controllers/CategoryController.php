@@ -25,13 +25,13 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->category_name);
         $category->category_image = $image;
         $category->save();
+
         return redirect('home');
     }
 
     public function home(Request $request)
     {
         $user=Category::all();
-        //$blog_category = Blog::all();
         return view('home',['category'=>$user]);
     }
 

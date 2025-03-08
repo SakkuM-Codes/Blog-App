@@ -10,7 +10,7 @@
 
 <!-- Navbar -->
     <nav class="bg-gray-200 shadow-xl shadow-gray-700/50 p-4 flex justify-between items-center border-b border-gray-300">
-        <div class="text-xl font-bold text-gray-900">Dasteen<span class="text-purple-500 text-lg">.Blog</span></div>
+        <div class="text-xl font-bold text-gray-900">Dasteen<span class="text-purple-500 text-sm">.blog</span></div>
         <div class="space-x-6">
             <a href="{{url('home')}}" class="text-gray-700">Home</a>
             <a href="#" class="text-gray-700">Category</a>
@@ -27,6 +27,7 @@
         </div> --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
              @foreach($blogs as $blog)
+             {{-- <a href="{{ route('blogs.show',[$blog->id, $blog->slug]) }}" class="hidden"> --}}
             <div class="bg-white rounded-lg overflow-hidden">
                 <img class="w-full h-40 object-cover" src="{{url('storage/'.$blog->image)}}" alt="Code Image">
                 <div class="p-4">
@@ -36,6 +37,7 @@
                         <div class="ml-2 text-gray-600 text-sm">
                             <p>Dasteen</p>
                             <p>{{$blog->created_at->format('M d, Y')}} &bull; {{$blog->duration.' Read'}}</p>
+                            <a href="{{ route('blogs.detail', $blog->slug) }}">Detail</a>
                         </div>
                     </div>
                 </div>

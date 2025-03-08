@@ -21,11 +21,21 @@ class Blog extends Model
         return $this->belongsToMany(Category::class, 'blogs_categorys', 'blog_id', 'category_id');
     }
 
+    // public function setSlugAttribute($value)
 
-     // To get category IDs for a specific blog:
+    // {
 
-    // $blog = Blog::find(1);
+    //     $this->attributes['slug'] = Str::slug($value); 
 
-    // $category = $blog->categorys->pluck('id')->toArray(); 
+    // }
+
+    // public static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::creating(function ($blog) {
+    //         $blog->slug = Str::slug($blog->title);
+    //     });
+    // }
 
 }

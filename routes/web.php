@@ -26,17 +26,16 @@ Route::post('/reset-password', [PasswordResetController::class, 'resetPassword']
 
 
 
-
-			//Blogs Route
-
-
-Route::controller(Blogcontroller::class)->group(function(){
+	Route::controller(Blogcontroller::class)->group(function(){
     Route::middleware('auth')->group(function(){
 
     	//Blogs Routes
     Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
 	Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
 	Route::get('/blogs/list', [BlogController::class, 'list'])->name('blogs.list');
+	Route::get('/blogs/detail/{slug}',[BlogController::class, 'detail'])->name('blogs.detail');
+	Route::get('home', [BlogController::class, 'home'])->name('home');
+	
 
 	//Category Routes
 	Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');

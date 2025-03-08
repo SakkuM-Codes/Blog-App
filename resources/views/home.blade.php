@@ -218,6 +218,7 @@
             <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            @if(isset($blogs) && $blogs->isNotEmpty())
             @foreach($blogs as $blog)
             <div class="bg-white rounded-lg overflow-hidden">
                 <img class="w-full h-40 object-cover" src="{{url('storage/'.$blog->image)}}" alt="Code Image">
@@ -226,16 +227,20 @@
                     <div class="flex items-center mt-3">
                         <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
                         <div class="ml-2 text-gray-600 text-sm">
-                            <p>{{ $blog->user->user_name ?? 'Author' }}</p>
-                            <p>{{ $blog->created_at->format('M d, Y') }} &bull; {{$blog->duration.' Read'}}</p>
+                            <p>{{$blog->user_id->username ?? 'Dasteen'}}</p>
+                            <p>{{$blog->created_at->format('M d, Y')}} &bull; {{$blog->duration.' Read'}}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            @endforeach
+             @endforeach
+        @else
+            <p>No blogs found for this category.</p>
+        @endif
         </div>
     </section>
-    
+
+
 
 <div class="text-center mt-8">
     <button class="bg-purple-600 text-white px-6 py-3 rounded-lg">More Articles</button>
