@@ -16,26 +16,9 @@ class Blog extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function categorys()
+    public function categories()
     {
         return $this->belongsToMany(Category::class, 'blogs_categorys', 'blog_id', 'category_id');
     }
-
-    // public function setSlugAttribute($value)
-
-    // {
-
-    //     $this->attributes['slug'] = Str::slug($value); 
-
-    // }
-
-    // public static function boot()
-    // {
-    //     parent::boot();
-
-    //     static::creating(function ($blog) {
-    //         $blog->slug = Str::slug($blog->title);
-    //     });
-    // }
 
 }

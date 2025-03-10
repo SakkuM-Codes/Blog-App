@@ -214,12 +214,12 @@
 
     <section class="max-w-6xl mx-auto pt-10">
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold flex items-center text-gray-900">{{ $category->category_name ?? 'Category' }}<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
+            @foreach($categories as $cat)
+            <h2 class="text-xl font-semibold flex items-center text-gray-900">{{{ $cat->category_name }}<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
             <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            @if(isset($blogs) && $blogs->isNotEmpty())
-            @foreach($blogs as $blog)
+            @foreach($cat->blogs->take(2) as $blog)
             <div class="bg-white rounded-lg overflow-hidden">
                 <img class="w-full h-40 object-cover" src="{{url('storage/'.$blog->image)}}" alt="Code Image">
                 <div class="p-4">
@@ -231,6 +231,7 @@
                             <p>{{$blog->created_at->format('M d, Y')}} &bull; {{$blog->duration.' Read'}}</p>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
              @endforeach

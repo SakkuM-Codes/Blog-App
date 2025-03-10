@@ -3,18 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dasteen Blog</title>
+    <title>List Categories</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-200">
-    <!-- Navbar -->
+
+   <!-- Navbar -->
     <nav class="bg-gray-200 shadow-xl shadow-gray-700/50 p-4 flex justify-between items-center border-b border-gray-300">
-        <div class="text-xl font-bold text-gray-900">Dasteen<span class="text-purple-500 text-lg">.Blog</span></div>
+        <div class="text-xl font-bold text-gray-900">Dasteen<span class="text-purple-500 text-sm">.blog</span></div>
         <div class="space-x-6">
+            @guest
             <a href="#" class="text-gray-700">Home</a>
             <a href="#" class="text-gray-700">Category</a>
             <a href="#" class="text-gray-700">Blogs</a>
-            <button class="bg-purple-600 text-white px-4 py-2 rounded-lg">LogOut</button>
+            <a href="login"><button class="bg-purple-600 text-white px-4 py-2 rounded-lg">login</button></a>
+            @else
+            <div class="flex justify-between items-center gap-4">
+                 <a href='/home' class="text-gray-700">Home</a>
+
+                  <div x-data="{ open: false }" class="relative">
+                <button @click="open = !open" class="text-gray-700 focus:outline-none">
+                    Category
+                </button>
+                <div x-show="open" @click.away="open = false"
+                    class="absolute left-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg">
+                    <a href='/category/list' class="block px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-100">Category List</a>
+                    <a href='/category/create' class="block px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-100">Category Create</a>
+                </div>
+            </div>
+                <div x-data="{ open: false }" class="relative">
+                <button @click="open = !open" class="text-gray-700 focus:outline-none">
+                    Blogs 
+                </button>
+            <div x-show="open" @click.away="open = false"
+                class="absolute left-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg">
+                <a href='/blogs/list' class="block px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-100">Blogs List</a>
+                <a href='/blogs/create' class="block px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-100">Blogs Create</a>
+            </div>
+        </div>
+            <a href="logout"><button class="bg-purple-600 text-white px-4 py-2 rounded-lg">LogOut</button></a>
+            @endguest
+        </div>
         </div>
     </nav>
 
@@ -22,7 +52,7 @@
      <!-- Categories -->
     <section class=" py-8 bg-gray-200">
         <div class="flex justify-between items-center mb-6">
-        <h2 class="text-lg font-semibold text-gray-900 flex items-center"> List Of Categories<span class="ml-1"> -> </span></h2>
+        <h2 class="text-lg font-semibold text-gray-900 flex items-center">List Of Categories<span class="ml-1"> -> </span></h2>
         </div>
         <div class="flex flex-wrap gap-6 justify-center space-x-4 mt-5">
             @foreach($category as $category)

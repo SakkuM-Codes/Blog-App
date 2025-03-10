@@ -32,7 +32,7 @@ class CategoryController extends Controller
     public function home(Request $request)
     {
         $user=Category::all();
-        return view('home',['category'=>$user]);
+        return view('home',['categories'=>$user]);
     }
 
     public function list(Request $request)

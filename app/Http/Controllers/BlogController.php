@@ -14,7 +14,9 @@ class BlogController extends Controller
     //
     public function create()
     {
-        $categorys = Category::all(); // Fetch all categories
+        // Fetch all categories
+
+        $categorys = Category::all(); 
 
         return view('blogs.create', compact('categorys'));
     }
@@ -34,14 +36,13 @@ class BlogController extends Controller
         $blog->is_feature = $request->has('toggle');        
         $blog->save();
 
-      if ($request->has('category_id')) 
-      {
-
-        $blog->categorys()->attach($request->category_id);
-        return redirect('/home');
+     if ($request->has('category_id')) 
+    {
+        $blog->categories()->attach($request->category_id); // Use `categories` instead of `categorys`
+        
     }
-
-        return redirect('/home');
+            return redirect('/home');
+        
     }
 
     public function list(Request $request)
@@ -53,10 +54,14 @@ class BlogController extends Controller
     // Home method to fetch and display blogs by category on the homepage
     public function home(Request $request)
     {
-        // If a category_id is passed via query string, use that; otherwise, use a default category ('FOOD')
-        if ($request->has('category_id') && !empty($request->category_id)) {
+        // If a category_id is passed via query string, use that; otherwise, use a default category
+        if ($request->has('category_id') && !empty($request->category_id)) 
+        {
+
             $category = Category::find($request->category_id);
+
         } else {
+
             $category = Category::where('category_name')->first();
         }
 
@@ -71,6 +76,7 @@ class BlogController extends Controller
     {
 
         $blog = Blog::where('slug', $slug)->firstOrFail();
+
         return view('blogs.detail', compact('blog'));
 
     }
