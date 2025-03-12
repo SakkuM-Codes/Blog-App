@@ -58,7 +58,8 @@
             @foreach($category as $category)
             <div class="flex flex-col shadow-md p-6 bg-white rounded-xl shadow w-[150px] h-[220px]">
             <img src="{{url('storage/public/'.$category->category_image)}}" class="h-12 w-9 mt-8 mb-4">
-              <p class="text-black mt-4 font-semibold text-lg">{{$category->category_name}}</p>  
+              <p class="text-black mt-4 font-semibold text-lg">{{$category->category_name}}</p>
+              <a href="{{ route('category.category_name', $category->category_name) }}">Detail</a>  
             </div>
         @endforeach
         </div>

@@ -5,7 +5,7 @@ use App\Models\User;
 use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongToMany;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -33,7 +33,7 @@ class BlogController extends Controller
         $blog->slug = Str::slug($request->title, '-'); 
         $blog->excerpt = Str::limit(strip_tags($request->excerpt), 100); 
         $blog->duration = $request->duration; 
-        $blog->is_feature = $request->has('toggle');        
+        $blog->is_feature = $request->has('is_feature');      
         $blog->save();
 
      if ($request->has('category_id')) 
@@ -54,22 +54,28 @@ class BlogController extends Controller
     // Home method to fetch and display blogs by category on the homepage
     public function home(Request $request)
     {
-        // If a category_id is passed via query string, use that; otherwise, use a default category
-        if ($request->has('category_id') && !empty($request->category_id)) 
-        {
 
-            $category = Category::find($request->category_id);
+        // $categoryName = $request->input('category_name');
+        // $category = Category::where($categoryName = ' ');
+        // $blogs = Blog::all();
+        // $category = Blog::where($categoryName = ' ')->take(4)->get();
+        // $featuredBlogs = Blog::where('is_feature', true)->latest()->take(4)->get();
+        // return view('home', compact('blogs','category','featuredBlogs'));
 
-        } else {
+        // $categoryName = $request->input('category_name', 'NATURE'); 
+        // $category = Category::where('category_name', $categoryName)->first();
+        // $blogs = Blog::all();
+        // $blogs = $category ? $category->blogs()->take(4)->get() : collect();
+        // $featuredBlogs = Blog::where('is_feature', true)->latest()->take(4)->get();
 
-            $category = Category::where('category_name')->first();
-        }
+        $categories = Category::where($category_name = ' ');
+         $category = Category::all();
+        $category = Category::where('category_name', $category_name)->first();
+        $blogs = Blog::all();
+        $blogs = $category ? $category->blogs()->take(4)->get() : collect();
 
-        // If the category exists, get its blogs; otherwise, return an empty collection.
-        $blogs = $category ? $category->blogs()->get() : collect();
+        return view('home', compact('blogs', 'category', 'featuredBlogs', 'categories'));
 
-        // Pass both variables to the view
-        return view('home', compact('blogs', 'category'));
     }
 
      public function detail($slug)
@@ -78,6 +84,11 @@ class BlogController extends Controller
         $blog = Blog::where('slug', $slug)->firstOrFail();
 
         return view('blogs.detail', compact('blog'));
-
     }
+
+    // public function feature($request Request)
+    // {
+    //     $is_feature = true;
+    //     $featuredBlogs = Blog::where($is_feature)->take(4)->get();
+    // }
 }

@@ -30,7 +30,7 @@
             
             <input type="text" name="excerpt" placeholder="Excerpt" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600">
             
-            <textarea type="text" id="summernote" rows="6" name="content" placeholder="Write your content" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600"></textarea>
+            <textarea type="text" id="summernote" rows="6" name="content" placeholder="Write your content" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600" ></textarea>
             
             <input type="file" name="image" accept="image/*" required class="w-full p-3 border border-gray-300 rounded-lg">
             
@@ -40,7 +40,7 @@
                 <!-- Toggle Switch -->
                 <label for="toggle" class="flex items-center cursor-pointer">
                     <div class="relative">
-                        <input type="checkbox" id="toggle" class="sr-only">
+                        <input type="checkbox" id="toggle" name="is_feature" class="sr-only">
                         <div class="w-12 h-6 bg-gray-300 rounded-full shadow-inner"></div>
                     <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
                         </div>

@@ -15,7 +15,7 @@ Route::get('register',[RegisterController::class, 'create']);
 Route::post('login', [LoginController::class, 'login'])->name('login');
  Route::get('logout',[LoginController::class,'logout']);
 Route::get('home', [BlogController::class, 'home'])->name('home');
-
+Route::get('home', [CategoryController::class, 'home'])->name('home');
 
 Route::get('/forget-password', [PasswordResetController::class, 'showForgotPasswordForm'])->name('password.request');
 Route::post('/forget-password', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
@@ -34,14 +34,13 @@ Route::post('/reset-password', [PasswordResetController::class, 'resetPassword']
 	Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
 	Route::get('/blogs/list', [BlogController::class, 'list'])->name('blogs.list');
 	Route::get('/blogs/detail/{slug}',[BlogController::class, 'detail'])->name('blogs.detail');
-	Route::get('home', [BlogController::class, 'home'])->name('home');
 	
 
 	//Category Routes
 	Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
 	Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
-	Route::get('home', [CategoryController::class, 'home'])->name('home');
 	Route::get('/category/list', [CategoryController::class, 'list'])->name('category.list');
+	Route::get('/category/{category_name}', [CategoryController::class, 'category_name'])->name('category.category_name');
 
 
     });
