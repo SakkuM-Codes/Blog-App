@@ -40,14 +40,14 @@
                 <!-- Toggle Switch -->
                 <label for="toggle" class="flex items-center cursor-pointer">
                     <div class="relative">
-                        <input type="checkbox" id="toggle" name="is_feature" class="sr-only">
+                        <input type="checkbox" id="toggle" name="is_feature" class="sr-only" value="1">
                         <div class="w-12 h-6 bg-gray-300 rounded-full shadow-inner"></div>
                     <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
                         </div>
                     <span class="ml-3 text-gray-700">Feature Blog</span>
                 </label>
                 
-                <select name="category_id[]" id="categoryDropdown" multiple class="w-full h-10 border border-gray-300 rounded-lg">
+                <select name="category_id[]" id="categoryDropdown" multiple class="w-full h-10 border border-gray-300 rounded-lg" required>
                     @foreach($categorys as $category)
                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                     @endforeach

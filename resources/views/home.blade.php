@@ -108,7 +108,7 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <div class="bg-white rounded-lg overflow-hidden">
-               {{--  @foreach($featuredBlogs as $blog)
+              {{-- @foreach($featuredBlogs as $blog)
                 <img class="w-full h-40 object-cover" src="{{url('storage/'.$blog->image)}}" alt="Code Image">
                 <div class="p-4">
                     <h3 class="font-semibold text-lg">{{$blog ->excerpt}}</h3>
@@ -126,108 +126,36 @@
     </section>
 
 
-{{-- <section class="max-w-6xl mx-auto pt-10">
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold flex items-center text-gray-900">Javascript<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
-            <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-white rounded-lg overflow-hidden">
-                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech1.jpeg') }}" alt="Code Image">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg">Array In Javascript - Learn JS #3</h3>
-                    <div class="flex items-center mt-3">
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
-                        <div class="ml-2 text-gray-600 text-sm">
-                            <p>Dasteen</p>
-                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg overflow-hidden">
-                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech2.jpeg') }}" alt="Book Image">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg">Fundamental Of Javascript</h3>
-                    <div class="flex items-center mt-9">
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
-                        <div class="ml-2 text-gray-600 text-sm">
-                            <p>Dasteen</p>
-                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
- --}}
-
-
-    {{-- <section class="max-w-6xl mx-auto pt-10">
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold flex items-center text-gray-900">CSS<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
-            <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-white rounded-lg overflow-hidden">
-                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech1.jpeg') }}" alt="Code Image">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg">Flex Box CSS : Everything you need to know</h3>
-                    <div class="flex items-center mt-3">
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
-                        <div class="ml-2 text-gray-600 text-sm">
-                            <p>Dasteen</p>
-                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg overflow-hidden">
-                <img class="w-full h-40 object-cover" src="{{ asset('Images/tech2.jpeg') }}" alt="Book Image">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg">Grid CSS Make Your Life Esier</h3>
-                    <div class="flex items-center mt-9">
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
-                        <div class="ml-2 text-gray-600 text-sm">
-                            <p>Dasteen</p>
-                            <p>Jan 10, 2022 &bull; 3 Min Read</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
-
-
     <section class="max-w-6xl mx-auto pt-10 mb-4">
+    @foreach($categories->take(4) as $category)
         <div class="flex justify-between items-center mb-4">
-            @foreach($category as $category_name)
-            <h2 class="text-xl font-semibold flex items-center text-gray-900">{{$category_name = 'NATURE' }}<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
-            <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
+            <h2 class="text-xl font-semibold flex items-center text-gray-900">
+                {{ $category->category_name }}
+                <span class="ml-1 w-10 h-[2px] bg-gray-500"></span>
+            </h2>
+            <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">
+                See All Article <span class="ml-1"> > </span>
+            </a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            @foreach($category->blogs as $blog)
-            <div class="bg-white rounded-lg overflow-hidden">
-                <img class="w-full h-40 object-cover" src="{{url('storage/'.$blog->image)}}" alt="Code Image">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg">{{$blog ->excerpt}}</h3>
-                    <div class="flex items-center mt-3">
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
-                        <div class="ml-2 text-gray-600 text-sm">
-                            <p>{{$blog->user_id->username ?? 'Dasteen'}}</p>
-                            <p>{{$blog->created_at->format('M d, Y')}} &bull; {{$blog->duration.' Read'}}</p>
+            @foreach($category->blogs->take(4) as $blog)
+                <div class="bg-white rounded-lg overflow-hidden">
+                    <img class="w-full h-40 object-cover" src="{{ url('storage/'.$blog->image) }}" alt="Code Image">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">{{ $blog->excerpt }}</h3>
+                        <div class="flex items-center mt-3">
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                            <div class="ml-2 text-gray-600 text-sm">
+                                <p>{{ $blog->user->username ?? 'Dasteen' }}</p>
+                                <p>{{ $blog->created_at->format('M d, Y') }} &bull; {{ $blog->duration }} Read</p>
+                            </div>
                         </div>
                     </div>
-                    @endforeach
                 </div>
-            </div>
-             @endforeach
+            @endforeach
         </div>
-    </section>
-
-
+    @endforeach
+</section>
 
 <div class="text-center mt-8">
     <button class="bg-purple-600 text-white px-6 py-3 rounded-lg"><a>More Articles</a></button>
