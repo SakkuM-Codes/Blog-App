@@ -23,6 +23,19 @@ class BlogController extends Controller
 
    public function store(Request $request)
     {
+
+        $request->validate([
+        'title' => 'required|string|max:255',
+        'image' => 'required|image',
+        'excerpt' => 'required|string|max:255',
+        'content' => 'required|string',
+        'duration' => 'required|string',
+        'is_feature' => 'nullable|tinyInteger;',
+        'slug' => 'required|string|unique:blogs,slug',
+        'category_id' => 'required|array',
+        'category_id.*' => 'exists:categories,id',
+    ]);
+
     
         $path = $request->file('image')->store('public', 'public');
         $blog = new Blog();
@@ -42,41 +55,40 @@ class BlogController extends Controller
             
         }
 
-        return redirect('/home');
-    }
+            return redirect('/home');
+        }
 
-    public function list(Request $request)
-    {
-        $user=Blog::all();
-        return view('blogs.list',['blogs'=>$user]);
-    }
+        public function list(Request $request)
+        {
+            $user=Blog::all();
+            return view('blogs.list',['blogs'=>$user]);
+        }
 
     // Home method to fetch and display blogs by category on the homepage
-    public function home(Request $request)
+        public function home(Request $request)
     {
-        //$categoryName = $request->input('category_name', 'NATURE');
-        //$category = Category::where('category_name', $categoryName)->first();
-        //$blogs = $category ? $category->blogs()->latest()->get() : collect();
-        //$categories = Category::all();
-        //$featuredBlogs = Blog::where('is_feature', true)->latest()->take(4)->get();
+        // Fetch all categories you want to display
+        $categories = Category::whereIn('category_name', ['NATURE', 'FOOD', 'TECH', 'FASHION'])->take(4)->get();
 
+        // Fetch featured blogs
+        $feature = Blog::where('is_feature', "1")->latest()->take(4)->get();
 
-         //Fetch all categories you want to display
-        $categories = Category::whereIn('category_name', ['NATURE', 'FOOD', 'TECH','FASHION'])->take(4)->get();
-        //Fetch featured blogs
-        $featuredBlogs = Blog::where('is_feature', true)->latest()->take(4)->get();
+        // Fetch all blogs (if needed)
+        $blogs = Blog::all();
 
-       return view('home', compact('categories', 'featuredBlogs'));
+        return view('home', compact('categories', 'feature', 'blogs'));
     }
 
-     public function detail($slug)
-    {
 
-        $blog = Blog::where('slug', $slug)->firstOrFail();
+        public function detail($slug)
+        {
 
-        return view('blogs.detail', compact('blog'));
+            $blog = Blog::where('slug', $slug)->firstOrFail();
+
+            return view('blogs.detail', compact('blog'));
+        }
+
     }
-
 
 
     // public function feature(Request $request)
@@ -97,7 +109,22 @@ class BlogController extends Controller
     // }
 
 
-}
+
+    //     public function home(Request $request)
+// {
+//     // Fetch all categories you want to display
+    //$categories = Category::whereIn('category_name', ['NATURE', 'FOOD', 'TECH', 'FASHION'])->take(4)->get();
+
+    // Fetch featured blogs
+    // $featuredBlogs = Blog::where('is_feature', true)
+    //                       ->latest()
+    //                       ->take(4)
+    //                       ->get();
+
+    // Pass the variables to the view
+    //return view('home', compact('categories', 'featuredBlogs'));
+
+
 
 
 
@@ -137,3 +164,34 @@ class BlogController extends Controller
         //$blogs = $categories ? $categories->blogs()->take(4)->get() : collect();
         // Fetch featured blogs
         //$featuredBlogs = Blog::where('is_feature', true)->latest()->take(4)->get();
+
+
+
+
+    //$categoryName = $request->input('category_name', 'NATURE');
+            //$category = Category::where('category_name', $categoryName)->first();
+            //$blogs = $category ? $category->blogs()->latest()->get() : collect();
+            //$categories = Category::all();
+            //$featuredBlogs = Blog::where('is_feature', true)->latest()->take(4)->get();
+
+//Fetch featured blogs
+            //$featuredBlogs = Blog::with('is_feature', true)->latest()->take(4)->get();
+
+
+
+    // $blog->is_feature = $request->has('is_feature');
+
+            // $isFeature = $request->input('is_feature');
+
+            // if($isFeature == true){
+
+            // $blogs = Blog::all();
+
+            // $featuredBlogs = Blog::where('is_feature', true)->latest()->take(4)->get();   
+            //  //$featuredBlogs->save(); 
+            // }else{
+            //      $isFeature == false;
+            //     return response()->json(['fail' => 'Blog will not display without selection categories.']);
+            // }
+
+            // Pass the variables to the view

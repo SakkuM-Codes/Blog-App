@@ -51,9 +51,9 @@
 
 <section class="max-w-6xl mx-auto pt-10 ">
         <div class="flex justify-between items-center mb-4">
-           {{--  <h2 class="text-xl font-semibold flex items-center text-gray-900">CSS<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
+           {{--  <h2 class="text-xl font-semibold flex items-center text-gray-900">CSS<span class="ml-1 w-10 h-[2px]    bg-gray-500"></span></h2>
             <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
-        </div> --}}
+            </div> --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
              @foreach($blogs as $blog)
              {{-- <a href="{{ route('blogs.show',[$blog->id, $blog->slug]) }}" class="hidden"> --}}
@@ -64,7 +64,7 @@
                     <div class="flex items-center mt-3">
                         <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
                         <div class="ml-2 text-gray-600 text-sm">
-                            <p>Dasteen</p>
+                            <p>{{ $blog->user->user_name ?? 'Dasteen' }}</p>
                             <p>{{$blog->created_at->format('M d, Y')}} &bull; {{$blog->duration.' Read'}}</p>
                             <a href="{{ route('blogs.detail', $blog->slug) }}">Detail</a>
                         </div>

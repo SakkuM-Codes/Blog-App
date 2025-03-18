@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('excerpt');  
             $table->text('content');
             $table->string('duration');
-            $table->boolean('is_feature')->default(false);
+            $table->tinyInteger('is_feature')->default(0);
             $table->string('slug');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();

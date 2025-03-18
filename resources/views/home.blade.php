@@ -99,31 +99,34 @@
         </div>
     </section>
     
-    <!-- Featured Articles -->
-    <div class="bg-white pb-9 pt-14">
+    
+<!-- Featured Articles -->
+<div class="bg-white pb-9 pt-14">
     <section class="max-w-6xl mx-auto">
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-2xl font-semibold items-center flex text-gray-900">Featured Article<span class="ml-1 w-10 h-[2px] bg-gray-500"></span></h2>
             <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">See All Article <span class="ml-1"> > </span></a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-white rounded-lg overflow-hidden">
-              {{-- @foreach($featuredBlogs as $blog)
-                <img class="w-full h-40 object-cover" src="{{url('storage/'.$blog->image)}}" alt="Code Image">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg">{{$blog ->excerpt}}</h3>
-                    <div class="flex items-center mt-3">
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
-                        <div class="ml-2 text-gray-600 text-sm">
-                            <p>{{$blog->user_id->username ?? 'Dasteen'}}</p>
-                            <p>{{$blog->created_at->format('M d, Y')}} &bull; {{$blog->duration.' Read'}}</p>
+            {{-- @foreach($feature as $blog)
+                <div class="bg-white rounded-lg overflow-hidden">
+                    <img class="w-full h-40 object-cover" src="{{ url('storage/'.$blog->image) }}" alt="Blog Image">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">{{ $blog->title }}</h3>
+                        <p class="text-sm text-gray-600">{{ $blog->excerpt }}</p>
+                        <div class="flex items-center mt-3">
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
+                            <div class="ml-2 text-gray-600 text-sm">
+                                <p>{{ $blog->user->user_name ?? 'Dasteen' }}</p>
+                                <p>{{ $blog->created_at->format('M d, Y') }} &bull; {{ $blog->duration. ' Read' }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                @endforeach --}}
-            </div>
+            @endforeach --}}
         </div>
     </section>
+
 
 
     <section class="max-w-6xl mx-auto pt-10 mb-4">
@@ -133,7 +136,7 @@
                 {{ $category->category_name }}
                 <span class="ml-1 w-10 h-[2px] bg-gray-500"></span>
             </h2>
-            <a href="#" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">
+            <a href="{{'category/$category->category_name'}}" class="text-gray-900 text-lg font-semibold relative hover:text-gray-900">
                 See All Article <span class="ml-1"> > </span>
             </a>
         </div>
@@ -146,7 +149,7 @@
                         <div class="flex items-center mt-3">
                             <img class="w-8 h-8 rounded-full" src="{{ asset('Images/dasteen.jpeg') }}" alt="Author">
                             <div class="ml-2 text-gray-600 text-sm">
-                                <p>{{ $blog->user->username ?? 'Dasteen' }}</p>
+                                <p>{{ $blog->user->user_name ?? 'Dasteen' }}</p>
                                 <p>{{ $blog->created_at->format('M d, Y') }} &bull; {{ $blog->duration }} Read</p>
                             </div>
                         </div>

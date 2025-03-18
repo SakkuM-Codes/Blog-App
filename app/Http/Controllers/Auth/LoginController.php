@@ -21,6 +21,7 @@ class LoginController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
+        return redirect('/register');
     }
 
     function logout()
@@ -31,6 +32,6 @@ class LoginController extends Controller
 
     function profile()
     {
-        
+
     }
 }
